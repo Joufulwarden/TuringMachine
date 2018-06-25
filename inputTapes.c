@@ -112,12 +112,14 @@ struct listOfTapes* readTapes(char *fileName, struct listOfTapes *tapes, char vo
         }
         for (int i = 0; i < strlen(tapePart); ++i) {
 
-            if (i == curListOfTapesCell->curPosition){
-                curListOfTapesCell->curSymbol = tapePart[i - 1];
+            if (i + 1 == curListOfTapesCell->curPosition){
+                curListOfTapesCell->curSymbol = tapePart[i];
             }
             struct tapeCell *curTapeCell = curListOfTapesCell->thisTape;
             while (curTapeCell->next != NULL) curTapeCell = curTapeCell->next;
             curTapeCell->data = tapePart[i];
+
+
 
             //добавляем крайний пустой символ
             struct tapeCell *newTapeCell = (struct tapeCell*)malloc(sizeof(*newTapeCell));
